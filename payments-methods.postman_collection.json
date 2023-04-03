@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "7b728a9a-ed6a-49a4-b1f8-396263752817",
+		"name": "payments-methods",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19719702"
+	},
+	"item": [
+		{
+			"name": "payments-methods",
+			"item": [
+				{
+					"name": "payments-methods",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var paymentMethodId = pm.variables.get(\"paymentMethodId\");\r",
+									"var paymentMethodDescription = pm.variables.get(\"paymentMethodDescription\");\r",
+									"var surchargePercentage = pm.variables.get(\"surchargePercentage\");\r",
+									"\r",
+									"pm.test(\"Validacion de estatus = 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma paymentMethodId =\"+ paymentMethodId +\" existe\", ()=>{    \r",
+									"     var ID = jsonData.data.find(x => x.paymentMethodId == paymentMethodId);\r",
+									"     pm.expect(ID).not.to.be.undefined;\r",
+									"     console.log(ID);\r",
+									"});\r",
+									"pm.test(\"Confirma paymentMethodDescription =\"+ paymentMethodDescription +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.paymentMethodDescription == paymentMethodDescription);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma surchargePercentage =\"+ surchargePercentage +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.surchargePercentage == surchargePercentage);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}payment-methods?groupingId=212583",
+							"host": [
+								"{{URL}}payment-methods"
+							],
+							"query": [
+								{
+									"key": "groupingId",
+									"value": "212583"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payments-methods + de un metodo de pago",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var paymentMethodId = pm.variables.get(\"paymentMethodId\");\r",
+									"var paymentMethodDescription = pm.variables.get(\"paymentMethodDescription\");\r",
+									"var surchargePercentage = pm.variables.get(\"surchargePercentage\");\r",
+									"\r",
+									"pm.test(\"Validacion de estatus = 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma paymentMethodId =\"+ paymentMethodId +\" existe\", ()=>{    \r",
+									"     var ID = jsonData.data.find(x => x.paymentMethodId == paymentMethodId);\r",
+									"     pm.expect(ID).not.to.be.undefined;\r",
+									"     console.log(ID);\r",
+									"});\r",
+									"pm.test(\"Confirma paymentMethodDescription =\"+ paymentMethodDescription +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.paymentMethodDescription == paymentMethodDescription);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma surchargePercentage =\"+ surchargePercentage +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.surchargePercentage == surchargePercentage);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiIxMDc2MjZkZi03NDYxLTRmNmEtYmZmMC0wODA0MTQ4NzRlOGQiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vZmZmY2RjOTEtZDU2MS00Mjg3LWFlYmMtNzhkMjQ2NmVlYzI5L3YyLjAiLCJpYXQiOjE2Nzc0OTIwODEsIm5iZiI6MTY3NzQ5MjA4MSwiZXhwIjoxNjc3NDk1OTgxLCJhaW8iOiJFMlpnWUdCNjJSaGlzWFdkVWxLaXBOWDNtdjlMQVE9PSIsImF6cCI6IjM5MmJhNjNmLWE5MjktNDY5YS05NGY0LTZmY2M4MjkyNjczOCIsImF6cGFjciI6IjEiLCJvaWQiOiIyZmQ4NmVhMS00OThkLTQxYWItYTVjMC1mMWFmOTU4YWIzMGIiLCJyaCI6IjAuQVJnQWtkejhfMkhWaDBLdXZIalNSbTdzS2Q4bWRoQmhkR3BQdl9BSUJCU0hUbzBZQUFBLiIsInJvbGVzIjpbImFjY2Vzc29wZXJhdGlvbnMiXSwic3ViIjoiMmZkODZlYTEtNDk4ZC00MWFiLWE1YzAtZjFhZjk1OGFiMzBiIiwidGlkIjoiZmZmY2RjOTEtZDU2MS00Mjg3LWFlYmMtNzhkMjQ2NmVlYzI5IiwidXRpIjoiNGNybENGNi1sVVdza0h2NG13bVhBQSIsInZlciI6IjIuMCJ9.ebF0pgKre67Xaablg6kuWS1oREQ5LCHIjJ01eKA_PywSw6VTO0w3fJwB4v20JMV4_pBE0NoOIxo7ufDbw9UyveaO3csf3s-H59wH0JIpsDproXOgAUvwXrE17MqdwyX12xkQ7L-lBPHspz0PvOTxCmCZe1G5AlqoXK49NvSe83WmO46fcAPjgMghMKLdpAkiyXd-77RvvejHRQqgqfheyXw35hPq3zZiYOM-KapCrWU-g3qErkDBn9FHbc0qASdc3kY24XmC3Izatk68fs9SIVLvaxAUCbdomrxHJKhXgNb8LQTecWz8rAKUYDnsQ5PEI_22osMP_JWYF3ygts5lfA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}payment-methods?groupingId=212583",
+							"host": [
+								"{{URL}}payment-methods"
+							],
+							"query": [
+								{
+									"key": "groupingId",
+									"value": "212583"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payments-methods 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									" "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}payment-methods?groupingId=212583",
+							"host": [
+								"{{URL}}payment-methods"
+							],
+							"query": [
+								{
+									"key": "groupingId",
+									"value": "212583"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payments-methods 204",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(206);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiIxMDc2MjZkZi03NDYxLTRmNmEtYmZmMC0wODA0MTQ4NzRlOGQiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vZmZmY2RjOTEtZDU2MS00Mjg3LWFlYmMtNzhkMjQ2NmVlYzI5L3YyLjAiLCJpYXQiOjE2Nzc0ODc4NjcsIm5iZiI6MTY3NzQ4Nzg2NywiZXhwIjoxNjc3NDkxNzY3LCJhaW8iOiJFMlpnWUpnNzYvb2psOFB6SXQ5Zm5leDc4WDFCTkFBPSIsImF6cCI6IjM5MmJhNjNmLWE5MjktNDY5YS05NGY0LTZmY2M4MjkyNjczOCIsImF6cGFjciI6IjEiLCJvaWQiOiIyZmQ4NmVhMS00OThkLTQxYWItYTVjMC1mMWFmOTU4YWIzMGIiLCJyaCI6IjAuQVJnQWtkejhfMkhWaDBLdXZIalNSbTdzS2Q4bWRoQmhkR3BQdl9BSUJCU0hUbzBZQUFBLiIsInJvbGVzIjpbImFjY2Vzc29wZXJhdGlvbnMiXSwic3ViIjoiMmZkODZlYTEtNDk4ZC00MWFiLWE1YzAtZjFhZjk1OGFiMzBiIiwidGlkIjoiZmZmY2RjOTEtZDU2MS00Mjg3LWFlYmMtNzhkMjQ2NmVlYzI5IiwidXRpIjoiakFkLWNqeGxrRTJGTFB0YmZhSnpBQSIsInZlciI6IjIuMCJ9.A4WKqNCnWVaOZogXg2uWr2W0Yr97DTnde_-TNrYXMxlcqYu5JWTOckmkjjuwM_uuIasgPHSBTQGg8wxJO980M9PlexdhoVbUQCt4qJD97OyGlsudgV78ZzfRKN2sZYK-VV0Q37eXPD9VimDmyyxGtUbvIjaFZ1FYZGYoa6DtPn7W6aYjIOXcnHOHoGu7gR5_SIoo9Nz9CeS1_9JBSMs80OSCKX_DIPw4DLJeOd0A4byifJg6fjHFYHyoX_jE7nlw1wl8ydTjRXpynkiiGl7UABezSwed0u8PSzurm40Oa6dPscst0VoQWHGqc3Ujlprhg8So6t5khDNEViVKs8mOtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}payment-methods?groupingId=675765",
+							"host": [
+								"{{URL}}payment-methods"
+							],
+							"query": [
+								{
+									"key": "groupingId",
+									"value": "675765"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
