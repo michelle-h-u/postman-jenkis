@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "bf9c599a-68fa-48f0-9dc9-2f2d5215f923",
+		"name": "conduits",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19719702"
+	},
+	"item": [
+		{
+			"name": "conduits",
+			"item": [
+				{
+					"name": "conduits",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var conduitId = pm.variables.get(\"conduitId\");\r",
+									"var conduitName = pm.variables.get(\"conduitName\");\r",
+									"\r",
+									"pm.test(\"Validacion de estatus = 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma conduitId =\"+ conduitId +\" existe\", ()=>{    \r",
+									"     var ID = jsonData.data.find(x => x.conduitId == conduitId);\r",
+									"     pm.expect(ID).not.to.be.undefined;\r",
+									"     console.log(ID);\r",
+									"});\r",
+									"pm.test(\"Confirma conduitName =\"+ conduitName +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.conduitName == conduitName);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "GUID",
+								"value": "8f4ccdaa-028f-4e75-a295-099bea119f87",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}conduits?businessProfileId=7195&agentId=142639&GUID=1BF2F38E-71E7-4743-84EA-298BAF013FAF",
+							"host": [
+								"{{URL}}conduits"
+							],
+							"query": [
+								{
+									"key": "businessProfileId",
+									"value": "7195"
+								},
+								{
+									"key": "agentId",
+									"value": "142639"
+								},
+								{
+									"key": "GUID",
+									"value": "1BF2F38E-71E7-4743-84EA-298BAF013FAF"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conduits Copy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "GUID",
+								"value": "8f4ccdaa-028f-4e75-a295-099bea119f87",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "{{Ocp-Apim-Subscription-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://akslau2dbsn001357401-ing.chubbdigital.com/agreement-catalogs/conduits?businessProfileId=7195&agentId=142639&GUID=1BF2F38E-71E7-4743-84EA-298BAF013FAF",
+							"protocol": "https",
+							"host": [
+								"akslau2dbsn001357401-ing",
+								"chubbdigital",
+								"com"
+							],
+							"path": [
+								"agreement-catalogs",
+								"conduits"
+							],
+							"query": [
+								{
+									"key": "businessProfileId",
+									"value": "7195"
+								},
+								{
+									"key": "agentId",
+									"value": "142639"
+								},
+								{
+									"key": "GUID",
+									"value": "1BF2F38E-71E7-4743-84EA-298BAF013FAF"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conduits 204",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(206);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "GUID",
+								"value": "8f4ccdaa-028f-4e75-a295-099bea119f87",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}conduits?businessProfileId=7195&agentId=142639",
+							"host": [
+								"{{URL}}conduits"
+							],
+							"query": [
+								{
+									"key": "businessProfileId",
+									"value": "7195"
+								},
+								{
+									"key": "agentId",
+									"value": "142639"
+								},
+								{
+									"key": "GUID",
+									"value": "82F869B3-49AC-48AD-9E26-6A614F292D76",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conduits 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							},
+							{
+								"key": "GUID",
+								"value": "8f4ccdaa-028f-4e75-a295-099bea119f87",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}conduits?businessProfileId=7195&agentId=142639",
+							"host": [
+								"{{URL}}conduits"
+							],
+							"query": [
+								{
+									"key": "businessProfileId",
+									"value": "7195"
+								},
+								{
+									"key": "agentId",
+									"value": "142639"
+								},
+								{
+									"key": "GUID",
+									"value": "82F869B3-49AC-48AD-9E26-6A614F292D76",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conduits + de un conducto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var conduitId = pm.variables.get(\"conduitId\");\r",
+									"var conduitName = pm.variables.get(\"conduitName\");\r",
+									"\r",
+									"pm.test(\"Validacion de estatus = 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirma conduitId =\"+ conduitId +\" existe\", ()=>{    \r",
+									"     var ID = jsonData.data.find(x => x.conduitId == conduitId);\r",
+									"     pm.expect(ID).not.to.be.undefined;\r",
+									"     console.log(ID);\r",
+									"});\r",
+									"pm.test(\"Confirma conduitName =\"+ conduitName +\" existe\", ()=>{\r",
+									"     var Name = jsonData.data.find(x => x.conduitName == conduitName);\r",
+									"     pm.expect(Name).not.to.be.undefined;\r",
+									"     console.log(Name);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "apiVersion",
+								"value": "{{apiVersion}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}conduits?businessProfileId=7093&agentId=599777&GUID=82F869B3-49AC-48AD-9E26-6A614F292D76",
+							"host": [
+								"{{URL}}conduits"
+							],
+							"query": [
+								{
+									"key": "businessProfileId",
+									"value": "7093"
+								},
+								{
+									"key": "agentId",
+									"value": "599777"
+								},
+								{
+									"key": "GUID",
+									"value": "82F869B3-49AC-48AD-9E26-6A614F292D76"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
